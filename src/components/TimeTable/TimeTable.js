@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import AuthService from '../services/AuthService';
+import AuthService from '../../services/AuthService';
 import {
     Container,
     Button,
@@ -36,7 +36,7 @@ const Timetable = () => {
         }
 
         try {
-            const response = await axios.get('http://localhost:8082/api/v1/students/1/timetable', {
+            const response = await axios.get('http://localhost:8082/api/v1/students/2/timetable', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
