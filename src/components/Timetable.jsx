@@ -35,7 +35,12 @@ const Timetable = ({ timetable }) => {
             const timeslotsForDay = createEmptyTimeslot();
             daySlots.timeslots.forEach((slot) => {
                 const timeslotIndex = timeslots.findIndex(
-                    (time) => time.startTime === slot.startTime && time.endTime === slot.endTime
+                    (time) => {
+                        // Strip seconds from both the times to match
+                        const startTime = slot.startTime.substring(0, 5); // "HH:MM"
+                        const endTime = slot.endTime.substring(0, 5); // "HH:MM"
+                        return time.startTime === startTime && time.endTime === endTime;
+                    }
                 );
                 if (timeslotIndex >= 0) {
                     timeslotsForDay[timeslotIndex].courseName = slot.coursename;
@@ -52,6 +57,7 @@ const Timetable = ({ timetable }) => {
             );
         });
     };
+
 
     return (
         <TableContainer component={Paper}>
