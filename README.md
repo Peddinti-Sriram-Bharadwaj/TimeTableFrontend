@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Display time table 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based application that allows students to log in, view their timetable, and access registered courses. The application is built using Material UI for the user interface and Axios for API communication. The timetable can also be downloaded as a PDF for easy reference.
 
-## Available Scripts
+This is a small section of a complete ERP for a student portal at university
 
-In the project directory, you can run:
+## Features
+- **Login**: Allows users to log in with their email and password.
+- **Timetable View**: Displays the student’s timetable.
+- **Registered Courses View**: Displays a list of courses the student is enrolled in.
+- **Download Timetable as PDF**: A button is available to download the student's timetable as a PDF.
 
-### `npm start`
+## Technologies Used
+- **React**: JavaScript library for building the user interface.
+- **Material UI**: React UI framework for styling and components.
+- **Axios**: Promise-based HTTP client for making requests to the backend API.
+- **Tailwind CSS**: Utility-first CSS framework used for styling.
+- **PDF Generation**: Custom utilities to download the timetable in PDF format.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
+Make sure you have the following installed:
+- Node.js
+- npm or yarn
 
-### `npm test`
+### Installation
+1. Clone this repository:
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>
+Install dependencies:
+npm install
+Start the development server:
+npm start
+Open your browser and navigate to http://localhost:3000 to view the application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### File Structure
 
-### `npm run build`
+    /src
+        /components
+            LoginForm.js          # Component for handling user login
+            Timetable.js          # Component for displaying the student's timetable
+            RegisteredCourses.js  # Component for displaying the list of registered courses
+        /hooks
+            useAuth.js            # Custom hook for managing authentication
+            useTimetable.js       # Custom hook for fetching the student's timetable
+            useCourses.js         # Custom hook for fetching registered courses
+        /utils
+            pdfUtils.js           # Utility functions for PDF download
+        App.js                  # Main app component that ties everything together
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Authentication
+The app uses a custom hook useAuth to manage login. Once a user logs in with their email and password, a token is stored in the state and used for subsequent API requests.
+Timetable and Courses.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Upon successful login, the student's timetable and registered courses are fetched automatically using the useTimetable and useCourses hooks, respectively.
+The timetable is displayed in the Timetable component, and the registered courses are shown in the RegisteredCourses component.
+Download Timetable as PDF.
 
-### `npm run eject`
+The Download Timetable as PDF button triggers the downloadTimetableAsPDF utility to save the timetable as a PDF file.
+API Integration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application communicates with a backend API to authenticate the user and fetch the student's timetable and courses. The API endpoint used for login is:
+POST http://localhost:8082/api/v1/auth/login
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The request body should contain:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+{
+"email": "student@example.com",
+"password": "your-password"
+}
+Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Feel free to fork this repository and submit pull requests. If you encounter any bugs or have suggestions for improvement, please open an issue.
 
-## Learn More
+### License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details.
